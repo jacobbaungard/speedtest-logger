@@ -5,10 +5,10 @@ echo "running init"
 
 if [ -f "$CONFIG_FILE" ]; then
   echo "a config file was already found"
-  exit 0
-fi
+else
 
 cat <<EOF > $CONFIG_FILE
+---
 LibrespeedBinary: $LIBRESPEED_BINARY
 InfluxHost: $INFLUX_HOST
 InfluxPort: $INFLUX_PORT
@@ -17,7 +17,8 @@ InfluxBucket: $INFLUX_BUCKET
 InfluxToken: $INFLUX_TOKEN
 CronSpec: $CRON_SPEC
 EOF
-
-echo "Wrote config file"
+  
+  echo "Wrote new config file"
+fi
 
 $@
