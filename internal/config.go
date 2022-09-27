@@ -27,23 +27,21 @@ import (
 type Config struct {
 	LibrespeedBinary string
 	CronSpec         string
-	InfluxHost       string
-	InfluxPort       string
+	InfluxAddress    string
 	InfluxToken      string // v2
 	InfluxOrg        string // v2
 	InfluxBucket     string // v2
 	InfluxUsername   string // v1
 	InfluxPassword   string // v1
 	InfluxDatabase   string // v1
-	InfluxSSL        bool
+	InfluxSSL        bool   // ?
 }
 
 func ParseConfig(ConfigFile string) Config {
 	// Set defaults
 	viper.SetDefault("LibrespeedBinary", "/usr/bin/librespeed-cli")
 	viper.SetDefault("CronSpec", "0 * * * *")
-	viper.SetDefault("InfluxHost", "localhost")
-	viper.SetDefault("InfluxPort", "8086")
+	viper.SetDefault("InfluxAddress", "http://localhost:8086")
 	viper.SetDefault("InfluxSSL", true)
 
 	// Read config
@@ -59,8 +57,7 @@ func ParseConfig(ConfigFile string) Config {
 	var conf Config
 	conf.LibrespeedBinary = viper.GetString("LibrespeedBinary")
 	conf.CronSpec = viper.GetString("CronSpec")
-	conf.InfluxHost = viper.GetString("InfluxHost")
-	conf.InfluxPort = viper.GetString("InfluxPort")
+	conf.InfluxAddress = viper.GetString("InfluxAddress")
 	conf.InfluxToken = viper.GetString("InfluxToken")
 	conf.InfluxOrg = viper.GetString("InfluxOrg")
 	conf.InfluxBucket = viper.GetString("InfluxBucket")

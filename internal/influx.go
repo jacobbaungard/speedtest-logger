@@ -27,9 +27,7 @@ import (
 func WriteResult(conf Config, result Result) {
 	// Create a new client using an InfluxDB server base URL and an authentication token
 	// TODO: v1?
-	address := "http://" + conf.InfluxHost + ":" + conf.InfluxPort
-	fmt.Println("address: ", address)
-	client := influxdb2.NewClient(address, conf.InfluxToken)
+	client := influxdb2.NewClient(conf.InfluxAddress, conf.InfluxToken)
 	if client == nil {
 		fmt.Println("Client was null")
 		return
