@@ -14,36 +14,34 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-package main
+
+package internal
 
 import (
-	"flag"
-	"time"
-
-	"github.com/go-co-op/gocron"
-	"github.com/jacobbaungard/speedtest-logger/internal"
+	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
+	"os"
+	"strings"
+	"time"
 )
 
-func main() {
+func InitializeLogger() {
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stdout, TimeFormat: time.RFC3339})
+	zerolog.SetGlobalLevel(zerolog.InfoLevel)
+}
 
-	// init logger
-	internal.InitializeLogger()
-	// Load config
-	var configfile = flag.String("config", "/etc/speedtest-logger.yaml", "Location of the configuration file")
-	flag.Parse()
-
-	// Parse config
-	conf := internal.ParseConfig(*configfile)
-
-	internal.SetLogLevel(conf.LogLevel)
-
-	s := gocron.NewScheduler(time.UTC)
-
-	_, err := s.Cron(conf.CronSpec).Do(func() { internal.Run(conf) })
-	if err != nil {
-		log.Fatal().Err(err).Msg("Error scheduling task")
+func SetLogLevel(level string) {
+	level = strings.ToLower(level)
+	switch level {
+	case "debug":
+		zerolog.SetGlobalLevel(zerolog.DebugLevel)
+	case "info":
+		zerolog.SetGlobalLevel(zerolog.InfoLevel)
+	case "warn", "warning":
+		zerolog.SetGlobalLevel(zerolog.WarnLevel)
+	case "error":
+		zerolog.SetGlobalLevel(zerolog.ErrorLevel)
+	default:
+		log.Warn().Msgf("Invalid log level: %s. Log level set to `info`", level)
 	}
-	log.Info().Msg("speedtest-logger started. Awaiting schedule.")
-	s.StartBlocking()
 }

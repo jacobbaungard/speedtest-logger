@@ -19,8 +19,8 @@ package internal
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/commander-cli/cmd"
+	"github.com/rs/zerolog/log"
 )
 
 type Result struct {
@@ -56,25 +56,39 @@ type Client struct {
 func Run(conf Config) {
 
 	// Run run_test
-	fmt.Println("Starting speedtest")
+	log.Info().Msg("Starting speedtest")
 	c := cmd.NewCommand("librespeed-cli --json")
 	err := c.Execute()
 	if err != nil {
-		panic(err.Error())
+		log.Fatal().Err(err).Msg("Error executing librespeed-cli binary")
 	}
 
-	fmt.Println(c.Stdout())
+	log.Debug().RawJSON("librespeed-cli raw output", []byte(c.Stdout())).Msg("librespeed-cli call completed")
+
 	// Parse result/jsoni
 	var results []Result
 	err = json.Unmarshal([]byte(c.Stdout()), &results)
 
 	if err != nil {
-		fmt.Println("Unable to parse JSON.")
-		fmt.Println(c.Stdout())
-		panic(err.Error())
+		log.Fatal().
+			RawJSON("librespeed-cli raw output", []byte(c.Stdout())).Err(err).
+			Msg("Unable to parse JSON from librespeed-cli")
 	}
 
-	fmt.Println("Struct is:", results[0])
+	// Convert struct back to json for debug printing (if enabled)
+	if e := log.Debug(); e.Enabled() {
+		resultJSON, err := json.Marshal(results[0])
+		if err != nil {
+			log.Warn().Err(err).Msg("Unable to output struct to JSON")
+		} else {
+			log.Debug().RawJSON("Parsed results", resultJSON).Msg("Speedtest result")
+		}
+	}
+
 	// save to influx
 	WriteResult(conf, results[0])
+	log.Info().
+		Float64("Download", results[0].Download).
+		Float64("Upload", results[0].Upload).
+		Msg("Speedtest complete.")
 }

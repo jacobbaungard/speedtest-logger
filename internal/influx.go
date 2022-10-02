@@ -19,8 +19,8 @@ package internal
 
 import (
 	"context"
-	"fmt"
 	"github.com/influxdata/influxdb-client-go/v2"
+	"github.com/rs/zerolog/log"
 	"time"
 )
 
@@ -29,13 +29,13 @@ func WriteResult(conf Config, result Result) {
 	// TODO: v1?
 	client := influxdb2.NewClient(conf.InfluxAddress, conf.InfluxToken)
 	if client == nil {
-		fmt.Println("Client was null")
+		log.Error().Msg("Error initializing influx client library")
 		return
 	}
 	// Use blocking write client for writes to desired bucket
 	writeAPI := client.WriteAPIBlocking(conf.InfluxOrg, conf.InfluxBucket)
 	if writeAPI == nil {
-		fmt.Println("WriteAPI was null")
+		log.Error().Msg("Error initializing influx WriteAPI")
 		return
 	}
 	p := influxdb2.NewPointWithMeasurement("speedtest").
@@ -49,9 +49,9 @@ func WriteResult(conf Config, result Result) {
 		SetTime(time.Now())
 	err := writeAPI.WritePoint(context.Background(), p)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Err(err).Msg("Error writing to influx")
 		return
 	}
 	client.Close()
-	fmt.Println("Wrote to influx")
+	log.Debug().Msg("Wrote datapoint to InfluxDB")
 }

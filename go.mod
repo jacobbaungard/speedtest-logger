@@ -6,6 +6,7 @@ require (
 	github.com/commander-cli/cmd v1.5.0
 	github.com/go-co-op/gocron v1.17.0
 	github.com/influxdata/influxdb-client-go/v2 v2.10.0
+	github.com/rs/zerolog v1.28.0
 	github.com/spf13/viper v1.13.0
 )
 
@@ -16,6 +17,8 @@ require (
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/influxdata/line-protocol v0.0.0-20200327222509-2487e7298839 // indirect
 	github.com/magiconair/properties v1.8.6 // indirect
+	github.com/mattn/go-colorable v0.1.12 // indirect
+	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/pelletier/go-toml v1.9.5 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.5 // indirect

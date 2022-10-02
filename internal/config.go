@@ -18,7 +18,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package internal
 
 import (
-	"fmt"
+	"github.com/rs/zerolog/log"
 	"github.com/spf13/viper"
 	"path/filepath"
 	"strings"
@@ -27,6 +27,7 @@ import (
 type Config struct {
 	LibrespeedBinary string
 	CronSpec         string
+	LogLevel         string
 	InfluxAddress    string
 	InfluxToken      string // v2
 	InfluxOrg        string // v2
@@ -43,6 +44,7 @@ func ParseConfig(ConfigFile string) Config {
 	viper.SetDefault("CronSpec", "0 * * * *")
 	viper.SetDefault("InfluxAddress", "http://localhost:8086")
 	viper.SetDefault("InfluxSSL", true)
+	viper.SetDefault("LogLevel", "info")
 
 	// Read config
 	viper.SetConfigName(strings.TrimSuffix(filepath.Base(ConfigFile), filepath.Ext(ConfigFile)))
@@ -50,7 +52,7 @@ func ParseConfig(ConfigFile string) Config {
 
 	err := viper.ReadInConfig() // Find and read the config file
 	if err != nil {             // Handle errors reading the config file
-		panic(fmt.Errorf("fatal error config file: %w", err))
+		log.Fatal().Err(err).Msg("Error reading config file")
 	}
 
 	// Build config struct
@@ -65,10 +67,12 @@ func ParseConfig(ConfigFile string) Config {
 	conf.InfluxPassword = viper.GetString("InfluxPassword")
 	conf.InfluxDatabase = viper.GetString("InfluxDatabase")
 	conf.InfluxSSL = viper.GetBool("InfluxSSL")
+	conf.LogLevel = viper.GetString("LogLevel")
 
 	// validate binary
-	// validate influx v1/v1
+	// validate influx v1/v2?
 	// validate cron spec
+	// Validate other inputs (address etc)
 
 	return conf
 
