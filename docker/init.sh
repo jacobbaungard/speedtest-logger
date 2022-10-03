@@ -10,14 +10,14 @@ else
 cat <<EOF > $CONFIG_FILE
 ---
 LibrespeedBinary: $LIBRESPEED_BINARY
-InfluxHost: $INFLUX_HOST
-InfluxPort: $INFLUX_PORT
+InfluxAddress: $INFLUX_ADDRESS
 InfluxOrg: $INFLUX_ORG
 InfluxBucket: $INFLUX_BUCKET
 InfluxToken: $INFLUX_TOKEN
 CronSpec: $CRON_SPEC
+LogLevel: $LOG_LEVEL
 EOF
-  
+
   echo "Wrote new config file"
 fi
 
