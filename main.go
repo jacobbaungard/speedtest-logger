@@ -46,6 +46,7 @@ func main() {
 	if err != nil {
 		log.Fatal().Err(err).Msg("Error scheduling task")
 	}
-	log.Info().Msg("speedtest-logger started. Awaiting schedule.")
+
+	log.Info().Msg("speedtest-logger started. Awaiting next run")
 	s.StartBlocking()
 }
