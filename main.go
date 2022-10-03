@@ -35,8 +35,10 @@ func main() {
 
 	// Parse config
 	conf := internal.ParseConfig(*configfile)
-
 	internal.SetLogLevel(conf.LogLevel)
+	if !internal.ValidateConfig(conf) {
+		log.Fatal().Msg("Config validation failed")
+	}
 
 	s := gocron.NewScheduler(time.UTC)
 

@@ -18,10 +18,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package internal
 
 import (
-	"github.com/rs/zerolog/log"
-	"github.com/spf13/viper"
+	"errors"
+	"net/url"
+	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/robfig/cron/v3"
+	"github.com/rs/zerolog/log"
+	"github.com/spf13/viper"
 )
 
 type Config struct {
@@ -69,11 +74,42 @@ func ParseConfig(ConfigFile string) Config {
 	conf.InfluxSSL = viper.GetBool("InfluxSSL")
 	conf.LogLevel = viper.GetString("LogLevel")
 
-	// validate binary
-	// validate influx v1/v2?
-	// validate cron spec
-	// Validate other inputs (address etc)
-
 	return conf
 
+}
+
+func ValidateConfig(conf Config) bool {
+	// Check if librespeed binary exists
+	if _, err := os.Stat(conf.LibrespeedBinary); errors.Is(err, os.ErrNotExist) {
+		log.Err(err).Msg("Could not find librespeed binary")
+		return false
+	}
+
+	// Check for valid cron spec
+	if _, err := cron.ParseStandard(conf.CronSpec); err != nil {
+		log.Err(err).Msg("Unable to parse cron spec")
+		return false
+	}
+
+	// Check address is sensible
+	if _, err := url.ParseRequestURI(conf.InfluxAddress); err != nil {
+		log.Err(err).Msg("Invalid Influx address")
+		return false
+	}
+
+	// Cannot set both InfluxToken and InfluxUsername/Password
+	if (len(conf.InfluxUsername) > 0 || len(conf.InfluxPassword) > 0) && len(conf.InfluxToken) > 0 {
+		log.Error().Msg("Cannot use both InfluxUsername and InfluxToken. Use username for Influx v1, token for Influx v2")
+		return false
+	}
+
+	// If using InfluxV1 we need to ensure both username and password is set
+	if len(conf.InfluxUsername) > 0 || len(conf.InfluxPassword) > 0 {
+		if len(conf.InfluxUsername) == 0 || len(conf.InfluxPassword) == 0 {
+			log.Error().Msg("If using Influx V1, both a username and a password is needed")
+			return false
+		}
+	}
+
+	return true
 }
