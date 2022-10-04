@@ -21,6 +21,7 @@ import (
 	"encoding/json"
 	"github.com/commander-cli/cmd"
 	"github.com/rs/zerolog/log"
+	"strconv"
 )
 
 type Result struct {
@@ -57,7 +58,14 @@ func Run(conf Config) {
 
 	// Run run_test
 	log.Info().Msg("Starting speedtest")
-	c := cmd.NewCommand("librespeed-cli --json")
+
+	librespeedCommand := "librespeed-cli --json"
+	if conf.LibrespeedServer != -1 {
+		librespeedCommand += " --server " + strconv.Itoa(conf.LibrespeedServer)
+	}
+	log.Debug().Str("Librespeed command", librespeedCommand).Msg("Constructed Librespeed command")
+
+	c := cmd.NewCommand(librespeedCommand)
 	err := c.Execute()
 	if err != nil {
 		log.Fatal().Err(err).Msg("Error executing librespeed-cli binary")

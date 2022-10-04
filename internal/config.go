@@ -31,6 +31,7 @@ import (
 
 type Config struct {
 	LibrespeedBinary string
+	LibrespeedServer int
 	CronSpec         string
 	LogLevel         string
 	InfluxAddress    string
@@ -63,6 +64,7 @@ func ParseConfig(ConfigFile string) Config {
 	// Build config struct
 	var conf Config
 	conf.LibrespeedBinary = viper.GetString("LibrespeedBinary")
+	conf.LibrespeedServer = viper.GetInt("LibrespeedServer")
 	conf.CronSpec = viper.GetString("CronSpec")
 	conf.InfluxAddress = viper.GetString("InfluxAddress")
 	conf.InfluxToken = viper.GetString("InfluxToken")
