@@ -1,0 +1,23 @@
+name: CI
+on:
+  push:
+  pull_request:
+jobs:
+  hadolint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: hadolint/hadolint-action@v2.0.0
+        with:
+          dockerfile: docker/Dockerfile
+          ignore: DL3008
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build Docker image
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        with:
+          context: .
+          file: docker/Dockerfile
+          push: false
