@@ -41,7 +41,7 @@ func WriteResult(conf Config, result Result) {
 	p := influxdb2.NewPointWithMeasurement("speedtest").
 		AddTag("server", result.Server.Name).
 		AddField("bytes_sent", result.BytesSent).
-		AddField("bytes_recieved", result.BytesRecieved).
+		AddField("bytes_received", result.BytesReceived).
 		AddField("ping", result.Ping).
 		AddField("jitter", result.Jitter).
 		AddField("download", result.Download).

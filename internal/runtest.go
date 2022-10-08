@@ -29,7 +29,7 @@ type Result struct {
 	Server        Server  `json:"server"`
 	Client        Client  `json:"client"`
 	BytesSent     int     `json:"bytes_sent"`
-	BytesRecieved int     `json:"bytes_received"`
+	BytesReceived int     `json:"bytes_received"`
 	Ping          float64 `json:"ping"`
 	Jitter        float64 `json:"jitter"`
 	Upload        float64 `json:"upload"`
