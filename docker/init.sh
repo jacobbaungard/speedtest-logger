@@ -13,6 +13,4 @@ CronSpec: $CRON_SPEC
 LogLevel: $LOG_LEVEL
 EOF
 
-fi
-
 $@
