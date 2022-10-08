@@ -12,7 +12,7 @@ InfluxDB.
 version: '3'
 services:
   speedtest-logger:
-     image: speedtest-logger
+     image: jacobbaungard/speedtest-logger
      container_name: speedtest-logger
      environment:
         - INFLUX_ADDRESS="http://localhost:8086"
