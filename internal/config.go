@@ -47,6 +47,7 @@ type Config struct {
 func ParseConfig(ConfigFile string) Config {
 	// Set defaults
 	viper.SetDefault("LibrespeedBinary", "/usr/bin/librespeed-cli")
+	viper.SetDefault("LibrespeedServer", -1)
 	viper.SetDefault("CronSpec", "0 * * * *")
 	viper.SetDefault("InfluxAddress", "http://localhost:8086")
 	viper.SetDefault("InfluxSSL", true)
