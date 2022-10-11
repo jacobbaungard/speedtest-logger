@@ -6,6 +6,8 @@ and this project adheres to [Calendar Versioning](https://calver.org/), with the
 format YYYY.MM.MICRO.
 
 ## [Unreleased]
+
+## [2022.10.2]
 ### Fixed
 - Fixed a bug causing the speedtest to not run unless specifically selecting a
   librespeed server
