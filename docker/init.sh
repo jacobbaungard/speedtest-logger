@@ -9,6 +9,9 @@ InfluxAddress: $INFLUX_ADDRESS
 InfluxOrg: $INFLUX_ORG
 InfluxBucket: $INFLUX_BUCKET
 InfluxToken: $INFLUX_TOKEN
+InfluxUsername: $INFLUX_USERNAME
+InfluxPassword: $INFLUX_PASSWORD
+InfluxDatabase: $INFLUX_DATABASE
 CronSpec: $CRON_SPEC
 LogLevel: $LOG_LEVEL
 EOF

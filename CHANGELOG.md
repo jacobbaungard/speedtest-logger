@@ -7,6 +7,13 @@ format YYYY.MM.MICRO.
 
 ## [Unreleased]
 
+## [2022.11.1]
+### Added
+- Support InfluxDB 1.8+
+
+### Changed
+- Use Go 1.19.3
+
 ## [2022.10.2]
 ### Fixed
 - Fixed a bug causing the speedtest to not run unless specifically selecting a

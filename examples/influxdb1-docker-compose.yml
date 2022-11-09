@@ -1,0 +1,39 @@
+version: '2'
+services:
+  influxdb:
+    image: influxdb:1.8
+    ports:
+      - '8086:8086'
+    volumes:
+      - influxdb-storage:/var/lib/influxdb
+    environment:
+      - INFLUXDB_DB=speedtest
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=admin
+  chronograf:
+    image: chronograf:latest
+    ports:
+      - '127.0.0.1:8888:8888'
+    volumes:
+      - chronograf-storage:/var/lib/chronograf
+    depends_on:
+      - influxdb
+    environment:
+      - INFLUXDB_URL=http://influxdb:8086
+      - INFLUXDB_USERNAME=admin
+      - INFLUXDB_PASSWORD=admin
+  speedtest-logger:
+     image: jacobbaungard/speedtest-logger
+     container_name: speedtest-logger-test
+     environment:
+        - INFLUX_ADDRESS="http://influxdb:8086"
+        - INFLUX_DATABASE="speedtest"
+        - INFLUX_USERNAME="admin"
+        - INFLUX_PASSWORD="admin"
+        - CRON_SPEC="0 * * * *"
+     depends_on:
+       - influxdb
+
+volumes:
+  influxdb-storage:
+  chronograf-storage:

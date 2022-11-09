@@ -26,6 +26,9 @@ services:
         - CRON_SPEC="0 * * * *"
 ```
 
+The `examples` directory contains full examples with InfluxDB included, as
+well as an example using InfluxDB 1.8+.
+
 ### Configuration
 
 The following configuration options are available.
@@ -37,6 +40,9 @@ The following configuration options are available.
 |     `INFLUX_ORG`          |   InfluxDB Organisation ID (InfluxDB 2)                        |
 |     `INFLUX_BUCKET`       |   InfluxDB Bucket ID (InfluxDB 2)                              |
 |     `INFLUX_TOKEN`        |   InfluxDB Authentication Token (InfluxDB 2)                   |
+|     `INFLUX_USERNAME`     |   InfluxDB Username (InfluxDB 1.8+)                            |
+|     `INFLUX_PASSWORD`     |   InfluxDB Password (InfluxDB 1.8+)                            |
+|     `INFLUX_DATABASE`     |   InfluxDB Database (InfluxDB 1.8+)                            |
 |     `LOG_LEVEL`           |   Log level: debug, info (default), warn, error                |
 |     `LIBRESPEED_SERVER`   |   By default a server is chosen based on lowest ping. Use this option to use a specific for the speedtests. A list of server IDs can be found [here](https://librespeed.org/backend-servers/servers.php).          |
 

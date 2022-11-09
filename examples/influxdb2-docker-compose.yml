@@ -1,0 +1,27 @@
+version: '3'
+services:
+  influxdb:
+    image: influxdb:latest
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: admin
+      DOCKER_INFLUXDB_INIT_PASSWORD: adminpassword
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: "MYTOKEN"
+      DOCKER_INFLUXDB_INIT_ORG: "myorg"
+      DOCKER_INFLUXDB_INIT_BUCKET: "speedtest-logger"
+    ports:
+      - "8086:8086"
+  speedtest-logger:
+     image: jacobbaungard/speedtest-logger
+     container_name: speedtest-logger-test
+     environment:
+        - INFLUX_ADDRESS="http://influxdb:8086"
+        - INFLUX_ORG="myorg"
+        - INFLUX_BUCKET="speedtest-logger"
+        - INFLUX_TOKEN="MYTOKEN"
+        - CRON_SPEC="0 * * * *"
+     depends_on:
+       - influxdb
+
+volumes:
+  influxdb2:

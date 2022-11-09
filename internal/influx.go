@@ -26,14 +26,27 @@ import (
 
 func WriteResult(conf Config, result Result) {
 	// Create a new client using an InfluxDB server base URL and an authentication token
-	// TODO: v1?
-	client := influxdb2.NewClient(conf.InfluxAddress, conf.InfluxToken)
+	var client influxdb2.Client
+	var InfluxOrg string
+	var InfluxBucket string
+
+	// assume v2 if token is provided, otherwise we assume Influx 1.8+
+	if len(conf.InfluxToken) > 0 {
+		client = influxdb2.NewClient(conf.InfluxAddress, conf.InfluxToken)
+		InfluxBucket = conf.InfluxBucket
+		InfluxOrg = conf.InfluxOrg
+	} else {
+		client = influxdb2.NewClient(conf.InfluxAddress, conf.InfluxUsername+":"+conf.InfluxPassword)
+		InfluxBucket = conf.InfluxDatabase
+		InfluxOrg = ""
+	}
 	if client == nil {
 		log.Error().Msg("Error initializing influx client library")
 		return
 	}
 	// Use blocking write client for writes to desired bucket
-	writeAPI := client.WriteAPIBlocking(conf.InfluxOrg, conf.InfluxBucket)
+	log.Debug().Str("InfluxDB bucket/database", InfluxBucket).Msg("Setting up InfluxDB client")
+	writeAPI := client.WriteAPIBlocking(InfluxOrg, InfluxBucket)
 	if writeAPI == nil {
 		log.Error().Msg("Error initializing influx WriteAPI")
 		return
