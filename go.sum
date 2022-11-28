@@ -46,8 +46,8 @@ github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDk
 github.com/cncf/udpa/go v0.0.0-20191209042840-269d4d468f6f/go.mod h1:M8M6+tZqaGXZJjfX53e64911xZQV5JYwmTeXPW+k8Sc=
 github.com/cncf/udpa/go v0.0.0-20200629203442-efcf912fb354/go.mod h1:WmhPx2Nbnhtbo57+VJT5O0JRkEi1Wbu0z5j0R8u5Hbk=
 github.com/cncf/udpa/go v0.0.0-20201120205902-5459f2c99403/go.mod h1:WmhPx2Nbnhtbo57+VJT5O0JRkEi1Wbu0z5j0R8u5Hbk=
-github.com/commander-cli/cmd v1.5.0 h1:zuMGIdRxQb63R+0Wa9G/g7xtF1fwEERdn+fIIKj5ujI=
-github.com/commander-cli/cmd v1.5.0/go.mod h1:y9HfHjaDNGRjzpOcMbK43A791NmESwKBkvCSDBCxJ94=
+github.com/commander-cli/cmd v1.6.0 h1:qIBeXVaXHv2TRAe4D2DEZ6oUlRW+udi0bqMcnEfgNTY=
+github.com/commander-cli/cmd v1.6.0/go.mod h1:y9HfHjaDNGRjzpOcMbK43A791NmESwKBkvCSDBCxJ94=
 github.com/coreos/go-systemd/v22 v22.3.3-0.20220203105225-a9a7ef127534/go.mod h1:Y58oyj3AT4RCenI/lSvhwexgC+NSVTIJ3seZv2GcEnc=
 github.com/cyberdelia/templates v0.0.0-20141128023046-ca7fffd4298c/go.mod h1:GyV+0YP4qX0UQ7r2MoYZ+AvYDp12OF5yg4q8rGnyNh4=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
