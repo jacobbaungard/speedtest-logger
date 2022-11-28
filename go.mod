@@ -3,7 +3,7 @@ module github.com/jacobbaungard/speedtest-logger
 go 1.18
 
 require (
-	github.com/commander-cli/cmd v1.5.0
+	github.com/commander-cli/cmd v1.6.0
 	github.com/go-co-op/gocron v1.18.0
 	github.com/influxdata/influxdb-client-go/v2 v2.12.0
 	github.com/robfig/cron/v3 v3.0.1
