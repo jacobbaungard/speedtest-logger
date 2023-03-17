@@ -7,6 +7,16 @@ format YYYY.MM.MICRO.
 
 ## [Unreleased]
 
+## [2023.03.1]
+### Changed
+- Docker: Update Go from 1.19.3 to 1.20.2
+- Dependency: gocron updated from 1.17.1 to 1.18.1
+- Dependency: influx-db-client updated from 2.12.0 to 2.12.2
+- Dependency: commander-cli/cmd updated from 1.5.0 to 1.6.0
+- Dependency: viper from 1.14.0 to 1.15.0 
+- Dependency: zerolog from 1.28.0 to 1.29.0
+- Dependency: x/net from 0.4.0 to 0.7.0 (CVE-2022-41723)
+
 ## [2022.11.1]
 ### Added
 - Support InfluxDB 1.8+
