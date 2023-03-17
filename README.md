@@ -1,5 +1,5 @@
 # Speedtest logger
-![GitHub Workflow Status (event)](https://img.shields.io/github/workflow/status/jacobbaungard/speedtest-logger/CI)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/jacobbaungard/speedtest-logger/docker-test.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/jacobbaungard/speedtest-logger)](https://goreportcard.com/report/github.com/jacobbaungard/speedtest-logger)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/jacobbaungard/speedtest-logger)
 ![GitHub](https://img.shields.io/github/license/jacobbaungard/speedtest-logger)
