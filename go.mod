@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/commander-cli/cmd v1.6.0
-	github.com/go-co-op/gocron v1.25.0
+	github.com/go-co-op/gocron v1.27.0
 	github.com/influxdata/influxdb-client-go/v2 v2.12.3
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/rs/zerolog v1.29.1
@@ -30,6 +30,7 @@ require (
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/stretchr/testify v1.8.2 // indirect
 	github.com/subosito/gotenv v1.4.2 // indirect
+	go.uber.org/atomic v1.9.0 // indirect
 	golang.org/x/net v0.7.0 // indirect
 	golang.org/x/sys v0.5.0 // indirect
 	golang.org/x/text v0.7.0 // indirect
