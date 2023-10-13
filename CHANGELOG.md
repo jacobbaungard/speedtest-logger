@@ -7,6 +7,15 @@ format YYYY.MM.MICRO.
 
 ## [Unreleased]
 
+## [2023.10.1]
+### Changed
+- Docker: Update go from 1.20.2 to 1.21.3
+- Dependency: gocron updated from 1.18.1 to 1.35.0
+- Dependency: influx-db-client updated from 2.12.2 to 2.12.3
+- Dependency: viper from 1.15.0 to 1.17.0
+- Dependency: zerolog from 1.29.0 to 1.31.0
+- Dependency: x/net from 0.7.0 to 0.17.0 (CVE-2023-3978/CVE-2023-39325)
+
 ## [2023.03.1]
 ### Changed
 - Docker: Update Go from 1.19.3 to 1.20.2
