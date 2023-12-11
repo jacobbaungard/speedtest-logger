@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/commander-cli/cmd v1.6.0
-	github.com/go-co-op/gocron v1.36.0
+	github.com/go-co-op/gocron v1.36.1
 	github.com/influxdata/influxdb-client-go/v2 v2.12.4
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/rs/zerolog v1.31.0
