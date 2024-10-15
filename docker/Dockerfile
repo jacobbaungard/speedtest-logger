@@ -1,6 +1,6 @@
 ARG GOVER=1.23.2
 
-FROM golang:$GOVER-bullseye AS builder
+FROM golang:$GOVER-bookworm AS builder
 
 ARG LIBRESPEED_VER=1.0.11
 
