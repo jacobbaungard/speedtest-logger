@@ -7,7 +7,7 @@ require (
 	github.com/go-co-op/gocron v1.37.0
 	github.com/influxdata/influxdb-client-go/v2 v2.13.0
 	github.com/robfig/cron/v3 v3.0.1
-	github.com/rs/zerolog v1.31.0
+	github.com/rs/zerolog v1.32.0
 	github.com/spf13/viper v1.18.1
 )
 
