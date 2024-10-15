@@ -1,4 +1,4 @@
-ARG GOVER=1.21.3
+ARG GOVER=1.23.2
 
 FROM golang:$GOVER-bullseye AS builder
 

@@ -1,6 +1,6 @@
 module github.com/jacobbaungard/speedtest-logger
 
-go 1.18
+go 1.23
 
 require (
 	github.com/commander-cli/cmd v1.6.0
