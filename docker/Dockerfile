@@ -2,7 +2,7 @@ ARG GOVER=1.23.2
 
 FROM golang:$GOVER-bullseye AS builder
 
-ARG LIBRESPEED_VER=1.0.10
+ARG LIBRESPEED_VER=1.0.11
 
 WORKDIR /tmp/
 RUN curl -L https://github.com/librespeed/speedtest-cli/releases/download/v"$LIBRESPEED_VER"/librespeed-cli_"$LIBRESPEED_VER"_linux_amd64.tar.gz -o speedtest-cli.tar.gz && \
