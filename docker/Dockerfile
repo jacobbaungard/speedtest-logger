@@ -1,8 +1,8 @@
-ARG GOVER=1.23.2
+ARG GOVER=1.27.3
 
-FROM golang:$GOVER-bookworm AS builder
+FROM golang:$GOVER-trixie AS builder
 
-ARG LIBRESPEED_VER=1.0.11
+ARG LIBRESPEED_VER=1.0.14
 
 WORKDIR /tmp/
 RUN curl -L https://github.com/librespeed/speedtest-cli/releases/download/v"$LIBRESPEED_VER"/librespeed-cli_"$LIBRESPEED_VER"_linux_amd64.tar.gz -o speedtest-cli.tar.gz && \
@@ -17,7 +17,7 @@ COPY ./internal/ ./internal/
 
 RUN go build
 
-FROM debian:bullseye
+FROM debian:trixie
 WORKDIR /app
 COPY --from=builder /app/speedtest-logger ./speedtest-logger
 COPY --from=builder /tmp/librespeed-cli /usr/bin/librespeed-cli
