@@ -5,7 +5,7 @@ go 1.23
 require (
 	github.com/commander-cli/cmd v1.6.0
 	github.com/go-co-op/gocron v1.37.0
-	github.com/influxdata/influxdb-client-go/v2 v2.13.0
+	github.com/influxdata/influxdb-client-go/v2 v2.14.0
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/rs/zerolog v1.35.1
 	github.com/spf13/viper v1.19.0
